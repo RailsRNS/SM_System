@@ -1,0 +1,39 @@
+<h1>Students#show</h1>
+<p>Find me in app/views/students/show.html.erb</p>
+
+Student: <%= existing_student.student_name %>
+
+<% @tcs.each do |f| %>
+    <%= f.course.course_name %>
+    <%= f.section.section_name  %>
+    <%= link_to 'Remove', delete_course_sections_relation_students_path(:id=>f.id),method: :delete %>
+    <% end %>
+
+
+<table>
+
+  <tr>
+    <td>ID</td>
+    <td>Related course & sections</td>
+    <td>Action</td>
+  </tr>
+
+  <% @@i=0 %>
+  <% @list_all_unasigned_course_sections.each do |item| %>
+
+      <tr>
+        <td><%= @@i=@@i+1 %></td>
+        <td><%= item.course.course_name%> - <%= item.section.section_name%></td>
+        <td>
+          <%= link_to 'Add this section',
+                      relate_course_section_students_path(:cid => item.course.id,:sid => item.section.id, stdid: existing_student.id) %>
+        </td>
+      </tr>
+  <% end %>
+
+  <tr>
+
+    <td></td>
+  </tr>
+
+</table>

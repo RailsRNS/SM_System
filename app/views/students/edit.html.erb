@@ -1,0 +1,22 @@
+<h1>Students#edit</h1>
+<p>Find me in app/views/students/edit.html.erb</p>
+
+<p>Update Student</p>
+
+<%= form_for existing_student do |f| %>
+    <% if existing_student.errors.any? %>
+        <ul>
+          <% existing_student.errors.full_messages.each do |message| %>
+              <li><%= message%></li>
+          <% end %>
+        </ul>
+    <% end %>
+    <p>
+      <%= f.label :student_name  %><br />
+      <%= f.text_field :student_name  %>
+    </p>
+    <p>
+      <%= f.submit "Update Student"  %>
+    </p>
+
+<% end %>

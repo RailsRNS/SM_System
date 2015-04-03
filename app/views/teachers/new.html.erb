@@ -1,0 +1,23 @@
+<h1>Teachers#new</h1>
+<p>Find me in app/views/teachers/new.html.erb</p>
+
+
+<p>Add new Teacher</p>
+
+<%= form_for @teacher do |f| %>
+    <% if @teacher.errors.any? %>
+        <ul>
+          <% teacher.errors.full_messages.each do |message| %>
+              <li><%= message%></li>
+          <% end %>
+        </ul>
+    <% end %>
+    <p>
+      <%= f.label :teacher_name  %><br />
+      <%= f.text_field :teacher_name  %>
+    </p>
+    <p>
+      <%= f.submit "Add Teacher"  %>
+    </p>
+
+<% end %>

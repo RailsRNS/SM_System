@@ -1,0 +1,75 @@
+<h1>Courses#show</h1>
+<p>Find me in app/views/courses/show.html.erb</p>
+
+Course: <%= @course.course_name %><br />
+
+<table>
+  <tr>
+
+  </tr>
+
+  <tr>
+
+    <td>ID</td>
+    <td>Related Sections</td>
+    <td>Action</td>
+
+  </tr>
+
+<% @@i=0 %>
+<% if @rec_course_section.nil? %>
+    <tr>
+      <td>There is no section here</td>
+    </tr>
+  <% else @rec_course_section.course.sections.each do |section| %>
+        <tr>
+
+          <td><%= @@i=@@i+1 %></td>
+          <td><%= section.section_name %></td>
+          <td>
+            <%= link_to 'Remove', delete_course_sections_courses_path(:sid => section.id, cid: @course.id),method: :delete %>
+          </td>
+        </tr>
+        <% end %>
+    <% end %>
+
+<tr>
+
+  <td>
+    <%= link_to "Add new Section", new_section_path  %>
+  </td>
+</tr>
+
+</table>
+
+
+<br />
+<br />
+<br />
+
+<table>
+
+  <tr>
+    <td >ID</td>
+    <td>Related Sections</td>
+    <td>Action</td>
+  </tr>
+  <% @@i=0 %>
+  <% @un_assigned_sections.each do |s| %>
+
+      <tr>
+        <td><%= @@i=@@i+1 %></td>
+        <td ><%= s.section_name %></td>
+        <td>
+          <%= link_to 'Add this section', add_course_section_courses_path(:sid => s.id, cid: @course.id) %>
+        </td>
+      </tr>
+  <% end %>
+
+  <tr>
+
+    <td ></td></tr>
+
+</table>
+
+<%= hidden_field_tag(:id, @course.id) %>

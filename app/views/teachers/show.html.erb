@@ -1,0 +1,47 @@
+<h1>Teachers#show</h1>
+<p>Find me in app/views/teachers/show.html.erb</p>
+
+
+
+    Teacher : <%= existing_teacher.teacher_name %>
+
+
+
+<% @tcs.each do |f|  %>
+    <br />
+    <% unless f.course_section.nil? %>
+        <%= f.course_section.course.course_name %>
+        <%= f.course_section.section.section_name %>
+        <%= link_to 'Remove', delete_course_section_relation_teachers_path(:id => f.id),method: :delete %>
+    <% end %>
+<% end %>
+
+
+      <table>
+
+        <tr>
+          <td>ID</td>
+          <td>Related course & sections</td>
+          <td>Action</td>
+        </tr>
+        <% @@i=0 %>
+        <% @unassigned_course_sections.each do |item| %>
+
+            <tr>
+              <td><%= @@i=@@i+1 %></td>
+              <td><%= item.course.course_name%> - <%= item.section.section_name%></td>
+              <td>
+                <%= link_to 'Add this section', add_course_section_teachers_path(:csid => item.id, tid: existing_teacher.id) %>
+
+              </td>
+            </tr>
+        <% end %>
+
+        <tr>
+
+          <td></td></tr>
+
+      </table>
+
+
+

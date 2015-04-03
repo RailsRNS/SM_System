@@ -1,0 +1,45 @@
+<h1>Sections#index</h1>
+<p>Find me in app/views/sections/index.html.erb</p>
+
+
+<br />
+
+
+
+<table>
+  <tr>
+    <td>List all Sections</td>
+
+
+  <tr>
+    <td>ID</td>
+    <td>Section</td>
+    <td>Action</td>
+  </tr>
+  <% if @section.count.zero? %>
+      <tr><td>No Data Found!</td></tr>
+  <% else %>
+      <% @@i=0 %>
+      <% @section.each do |section| %>
+          <tr>
+            <td><%= @@i=@@i+1 %></td>
+            <td><%= section.section_name%></td>
+            <td>
+              <%= link_to "Edit", edit_section_path(section)  %> |
+              <%= link_to "Delete", section, :confirm => "Are you sure?", :method => :delete  %>
+            </td>
+          </tr>
+
+      <% end %>
+
+  <% end %>
+
+  <tr>
+    <td>
+      Total number of data is: <%= @section.count %>
+    </td>
+    <td><%= link_to "Add new Section", new_section_path %></td></tr>
+
+
+</table>
+
